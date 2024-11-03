@@ -6,15 +6,17 @@
 //
 
 import ModernRIBs
+import Foundation
 
 protocol SuperPayDashboardDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    // 부모로 부터 전달 받을 값
+    var balance: ReadOnlyCurrentValuePublisher<Double> { get }
 }
 
-final class SuperPayDashboardComponent: Component<SuperPayDashboardDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+final class SuperPayDashboardComponent: Component<SuperPayDashboardDependency>, SuperPayDashboardInteractorDependency {
+    var balanceFormatter: NumberFormatter { Formatter.balanceFormatter }
+    // 빌더에서 새로 만들던지 아니면 부모로 부터 받던지 둘 중에 선택
+    var balance: ReadOnlyCurrentValuePublisher<Double> { dependency.balance }
 }
 
 // MARK: - Builder
@@ -32,7 +34,11 @@ final class SuperPayDashboardBuilder: Builder<SuperPayDashboardDependency>, Supe
     func build(withListener listener: SuperPayDashboardListener) -> SuperPayDashboardRouting {
         let component = SuperPayDashboardComponent(dependency: dependency)
         let viewController = SuperPayDashboardViewController()
-        let interactor = SuperPayDashboardInteractor(presenter: viewController)
+        let interactor = SuperPayDashboardInteractor(
+            presenter: viewController,
+            dependency: component
+        )
+        
         interactor.listener = listener
         return SuperPayDashboardRouter(interactor: interactor, viewController: viewController)
     }
