@@ -2,6 +2,7 @@ import ModernRIBs
 
 protocol FinanceHomeRouting: ViewableRouting {
     func attachSuperPayDashboard()
+    func attachCardOnFileDashboard()
 }
 
 protocol FinanceHomePresentable: Presentable {
@@ -20,8 +21,7 @@ final class FinanceHomeInteractor: PresentableInteractor<FinanceHomePresentable>
     
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
-    override init(presenter: FinanceHomePresentable) {
-        super.init(presenter: presenter)
+    override init(presenter: FinanceHomePresentable) {         super.init(presenter: presenter)
         presenter.listener = self
     }
     
@@ -29,6 +29,7 @@ final class FinanceHomeInteractor: PresentableInteractor<FinanceHomePresentable>
         super.didBecomeActive()
         
         router?.attachSuperPayDashboard()
+        router?.attachCardOnFileDashboard()
     }
     
     override func willResignActive() {
