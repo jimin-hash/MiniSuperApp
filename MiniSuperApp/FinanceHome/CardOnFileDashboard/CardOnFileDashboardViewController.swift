@@ -9,6 +9,8 @@ import ModernRIBs
 import UIKit
 
 protocol CardOnFileDashboardPresentableListener: AnyObject {
+    // 뷰에서 액션이 일어날 시
+    func didTapAddPaymentMethod()
 }
 
 final class CardOnFileDashboardViewController: UIViewController, CardOnFileDashboardPresentable, CardOnFileDashboardViewControllable {
@@ -95,7 +97,7 @@ final class CardOnFileDashboardViewController: UIViewController, CardOnFileDashb
     }
     
     @objc private func addMethodButtonDidTap() {
-        
+        listener?.didTapAddPaymentMethod()
     }
     
     func update(with viewModels: [PaymentMethodViewModel]) {

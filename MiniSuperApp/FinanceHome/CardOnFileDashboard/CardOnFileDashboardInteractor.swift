@@ -19,7 +19,8 @@ protocol CardOnFileDashboardPresentable: Presentable {
 }
 
 protocol CardOnFileDashboardListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+    // 부모에게 이벤트가 발생했다는 것을 알릴 수 있음
+    func cardOnFileDashboardDidTapAddPaymentMethod()
 }
 
 protocol CardOnFileDashboardInteractorDependency {
@@ -48,7 +49,7 @@ final class CardOnFileDashboardInteractor: PresentableInteractor<CardOnFileDashb
         super.didBecomeActive()
     
         dependecy.cardOnFileRepository.cardOnFile.sink { methods in
-            let viewModels = methods.prefix(3).map(PaymentMethodViewModel.init)
+            let viewModels = methods.prefix(5).map(PaymentMethodViewModel.init)
             self.presenter.update(with: viewModels)
         }.store(in: &cancellables)
 
@@ -59,5 +60,9 @@ final class CardOnFileDashboardInteractor: PresentableInteractor<CardOnFileDashb
         
         cancellables.forEach { $0.cancel() }
         cancellables.removeAll()
+    }
+    
+    func didTapAddPaymentMethod() {
+        listener?.cardOnFileDashboardDidTapAddPaymentMethod()
     }
 }
