@@ -3,6 +3,7 @@ import UIKit
 
 protocol TransportHomePresentableListener: AnyObject {
     func didTapBack()
+    func didTapRideConfirm()
 }
 
 final class TransportHomeViewController: UIViewController, TransportHomePresentable, TransportHomeViewControllable {
@@ -200,12 +201,11 @@ final class TransportHomeViewController: UIViewController, TransportHomePresenta
         ])
     }
     
-    @objc
-    private func backButtonDidTap() {
+    @objc private func backButtonDidTap() {
         listener?.didTapBack()
     }
     
-    @objc
-    private func didTapRideConfirmButton() {
+    @objc private func didTapRideConfirmButton() {
+        listener?.didTapRideConfirm()
     }
 }
