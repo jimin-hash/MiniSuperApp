@@ -78,7 +78,7 @@ final class AddPaymentMethodViewController: UIViewController, AddPaymentMethodPr
 //            target: self,
 //            action: #selector(didTapClose)
 //        )
-        setupNavigationItem(target: self, action: #selector(didTapClose))
+        setupNavigationItem(with: .close, target: self, action: #selector(didTapClose))
         
         view.backgroundColor = .backgroundColor
         view.addSubview(cardNumberTextField)
