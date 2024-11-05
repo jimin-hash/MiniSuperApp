@@ -75,7 +75,7 @@ final class FinanceHomeRouter: ViewableRouter<FinanceHomeInteractable, FinanceHo
             return
         }
         
-        let router = addPaymentMethodBuildable.build(withListener: interactor)
+        let router = addPaymentMethodBuildable.build(withListener: interactor, closeButtonType: .close)
         let nav = NavigationControllerable(root: router.viewControllable)
         nav.navigationController.presentationController?.delegate = interactor.presentationDelegateProxy
         viewController.present(nav, animated: true, completion: nil)
