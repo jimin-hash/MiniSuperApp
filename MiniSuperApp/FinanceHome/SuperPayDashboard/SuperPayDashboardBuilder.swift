@@ -7,7 +7,7 @@
 
 import ModernRIBs
 import Foundation
-
+import CombineUtil
 protocol SuperPayDashboardDependency: Dependency {
     // 부모로 부터 전달 받을 값
     var balance: ReadOnlyCurrentValuePublisher<Double> { get }
