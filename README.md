@@ -68,4 +68,27 @@ Stable Dependency 주입할 필요 없는 의존성
 ex) Foundation, 유팅성 코드, Formatter 등
 
 
+모듈화를 위해선 아래와 같이 진행한다.
+1. 코드를 라이브러리로 적절히 분리해서, public과 internal 접근자로 무분별한 개체 참조를 막는다. (Swift Package 사용)
+2. 모듈을 느슨하게 결합하여 소스 코드 의존성을 역전시켜, 쓰지 않을 코드를 컴파일을 기다리지 않고도 필요로하는 모듈만 실행한다.
+
+주의 사항
+모듈화를 진행할때에는 앱 최상위에서 가장 먼 곳에서부터 시작, List Node에서 부터 시작해야한다. 
+internal protocol -> public 으로 전환할때 리스너, 디펜던시, 빌더블, 빌더를 퍼블릭으로 바꾼다.
+
+모듈화 프로젝트 진행 스텝
+1. AddPaymentMethod(최하위) 라이브러리 생성
+2. PaymentMehotd는 Finance 패키지 전체에서 사용되는 객체이기 때문에 새로운 라이브러리 FinanceEntity라는 라이브러리를 생성한다.
+3. 레포지토리 전용 라이브러리 생성
+4. ReadOnlyCurrentValuePublisher는 앱 전반적으로 쓰이는 잔액 publisher이기 때문에 Platform 패키지에 combineUtil이라는 라이브러리를 생성하여 사용하게끔함
+5. RIBs관련 유틸도 Platform 패키지에 라이브러리 생성함
+
+
+
+
+Problem
+AddPaymentMethodViewController, AddPaymentMethodBuilder에 @MainActor, @preconcurrency 추가해야함? nonisolated?
+-> 전반적으로 actor에 대한 스터디 필요!!!
+
+
 
