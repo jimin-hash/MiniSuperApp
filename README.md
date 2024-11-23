@@ -1,69 +1,71 @@
-<a href="https://fastcampus.co.kr/dev_red_rsj?utm_source=soojin-github&utm_medium=readme&utm_campaign=soojin">
-  <img src="https://soojin.ro/assets/posts/fastcampus-0.png" />
-</a>
 
-<div align = "center">
-  <a href="https://fastcampus.co.kr/dev_red_rsj?utm_source=soojin-github&utm_medium=readme&utm_campaign=soojin">
-    <img src="https://img.shields.io/badge/강의-패스트캠퍼스-red?style=flat" />
-  </a>
-  <a href="https://soojin.ro">
-    <img src="https://img.shields.io/badge/iOS개발자-노수진-orange?style=flat" />
-  </a>
-  <a href="https://github.com/nsoojin/MiniSuperApp-fastcampus">
-    <img src="https://img.shields.io/badge/실습 프로젝트-미니슈퍼앱-378805?style=flat" />
-  </a>
-  <a href="https://github.com/nsoojin/MiniSuperApp-fastcampus/discussions/categories/아무-질문이나-환영합니다">
-    <img src="https://img.shields.io/badge/질문-환영-ffda00?style=flat" />
-  </a>
-</div>
 
-### "모바일 개발자에게 확장성(scalability)이란
+모듈 레벨 아키텍처
 
-모바일 팀과 앱의 규모가 계속 커져도 사용자 경험과 개발자 경험 모두를 안정적으로 유지하는 것이라고 생각합니다.
+모노리틱 앱 구조 특징
+1. 단일 타겟(모듈)
+2. 객체 간 무분별한 참조
+3. 코드 변경의 영향 범위 파악이 힘듦
+4. 빌드 시간 증가에 따른 생산성 저하
 
-개발자의 기술력은 개발 과정에서 발생하는 병목 현상을 얼마나 잘 처리하는지에서 보여지죠. 서버의 경우에는 많은 사용자가 몰릴 때 병목 현상이 발생하지만, 모바일의 경우에는 하나의 프로그램에 다수의 개발자들의 코드가 몰릴 때 병목이 발생한다고 볼 수 있습니다."
+모듈화를 완성시키기 위해서는 모듈간에 느슨하게 결합을 해야 진정한 모듈화가 완성된다.
 
-관련글: [모바일 개발자에게 scalability란 뭘까](https://soojin.ro/blog/scalability)
-<br>
+소스코드 의존성
+- 코드의 흐름은 런타임 의존성이라 부름
+- 소스코드 의존성은 컴파일 타임 의존성이라 부름 (빌드시간을 좌우함)
 
-# 강의 내용
+example) 상위 모듈(10초)은 모듈1(10초)과 모듈2(50초)가 모두 컴파일된 후에야 컴파일이 가능
+xcode10 이후에 병렬 빌드가 가능해져서 모듈1,2가 겹지는 부분이 없다고 가정하였을때, 상위 모듈이 컴파일이 진행할때 모듈1,2도 동시에 컴파일이 진행됨 총 60초가 소요됨
+-> 앱의 빌드 시간을 줄이고 싶다면 전체 빌드에 직접적인 영향을 주는 병목 모듈(같은 레벨의 모듈)들을 찾아내서 그 모듈의 빌드 시간을 먼저 줄여야한다.
+-> Solution: 코드를 모듈화해서 별도 프레임워크로 만들어서 해당 프레임워크만 빌드하는 xcode scheme을 만들어서 프레임워크 단독으로 빌드를 하고 또 Unit Test를 해볼수도 있다.
 
-### 1부. 코드 레벨 아키텍처: 재사용 가능한 코드를 만드는 스킬
+느슨한 결합
+<img width="494" alt="스크린샷 2024-11-14 오후 3 51 17" src="https://github.com/user-attachments/assets/6db202c8-0d30-4fc9-9b6e-7c9325fe3539">
+비즈니스 로직은 UserServiceImp 객체가 아니라 UserService라는 프로토콜에 소스 코드 의존성을 가짐
+의존성 역전, 코드 호출 의존성과 소스 코드 의존성이 반대 방향으로 향함. 이것을 통해 비즈니스 로직을 구현제로부터 독립시키는 것이 가능함
+<img width="713" alt="스크린샷 2024-11-14 오후 3 59 38" src="https://github.com/user-attachments/assets/04b178e1-807e-4ce0-9bd3-557d3695cb9d"> 
+초록색: 코드 호출(Flow of Control)
+빨간색: 소스코드 의존성
 
-객체를 작게 만들고, 작은 객체를 조합해서 복잡한 기능으로 합치는 것이 아키텍처의 시작입니다. Massive View Controller, Massive View Model, Massive Interactor는 아키텍처만의 문제가 아니라 개발자의 [composition](https://en.wikipedia.org/wiki/Object_composition) 활용 능력에 따라 달라질 수 있습니다. Composition이 강력한 아키텍처 프레임워크 RIBs를 기반으로 미니 슈퍼앱을 만들어봅니다.
+모노리틱 앱 구조에서 모듈화 구조로 바꾸고 모듈 간 소스코드 의존성을 역전해서 느슨하게 결합을 하면 얻을 수 있는 장점
+1. 확장과 재사용
+   - 새 기능 개발, 기존 기능 수정 수월
+   - 모듈별 독립적인 재사용 가능
+2. 유지보수
+   - 모듈의 경계가 명확
+   - 수정, 영향 범위 파악이 쉬움
+   - 개발 생산성 향상
+   - 빌드 시간 단축
+3. 병렬 개발
+   - 규묘가 큰 팀에게 필수
+   - 고립된 개발 환경
+   - 미완성 모듈에도 의존할 수 있음
+4. 테스트 용이성
+   - 테스트 대역으로 치환
+   - 빠른 자동화 테스트
+  
+의존성 역전은 꼭 필요한 곳에만 사용하는 것이 좋음, 여러곳에서 의존역 역전 protocol을 사용하게 된다면 코드의 흐름을 읽기 어려울 수 있기 때문에.
 
-관련1: [스위프트로 다시보는 객체지향 프로그래밍: 피해야할 코딩 습관](https://soojin.ro/blog/solid-principles-in-swift)
-<br>
-관련2: [개발자와 라면 조리법](https://soojin.ro/blog/programmer-and-ramyun)
-<br>
-관련3: [google/promises를 활용한 스위프트 비동기 프로그래밍과 에러 핸들링](https://soojin.ro/blog/using-google-promises-swift)
+의존성 주입 - 의존성 역전을 실행하기 위한 구체적인 방법
+의존성 격전이 쓰인 코드에서는 객체들을 생성하고 주입해 주는 지점이 존재해야 하는데, 이 지점을 컴포지션 루트하고 부름
 
-### 2부. 모듈 레벨 아키텍처: 유지 보수와 개발 속도를 고려하는 모듈화
+의존성 주입 방법 3가지
+1. 생성자 주입
+2. 매서드 주입
+3. 프로퍼티 주입
 
-'느슨하게 결합된 모듈 구조'는 '확장성 있는 아키텍처'와 같은 말이나 다름없습니다. 200명의 iOS 앱 개발자가 기여하는 슈퍼앱 그랩, 약 75명이 기여하는 [에어비엔비](https://medium.com/airbnb-engineering/designing-for-productivity-in-a-large-scale-ios-application-9376a430a0bf) 같은 회사의 개발자들이 생산성을 지킬 수 있는 방법입니다. 왜 모듈화를 하면 빌드 시간이 줄어들어서 생산성이 오르는지 원리를 알아보고, 실습을 통해 미니 슈퍼앱에 적용해봅니다.
+RIBs에서는 빌더가 각 리블렛의 컴포지션 루트 역할을 하고 있음.
 
-관련1: [모바일 앱의 느슨한 결합](https://soojin.ro/blog/loose-coupling)
-<br>
-관련2: [Sourcery 개발자로부터 배우는 모바일 아키텍처와 개발자 경험](https://soojin.ro/blog/pragmatic-programmer)
+의존성 필요 유무
+의존성을 주입할지 말지는 외존성이 가지고 있는 동작의 특성에 따라 다름
+Volatile Dependency 주입해야하는 의존성
+1. 사용하기 전 runtime에 초기화가 필요한 것 ex) 데이터베이스
+2. 아직 존재하지 않거나 개발 중인 것
+3. 비결정론적 동작 / 알고리즘 ex) 랜덤 함수, Date()등
+   
+Stable Dependency 주입할 필요 없는 의존성
+결정론적 동작 / 알고리즘, 신뢰할만한 하위호환성, Volatile 의존성을 제외한 모든 것
+ex) Foundation, 유팅성 코드, Formatter 등
 
-### 3부. 자동화 테스팅
 
-현업 개발자들이 테스트를 처음 시작하기 어려운 이유는 레거시 코드가 테스트 불가능한 구조로 짜여져 있기 때문입니다. 하지만 실습에서 짜는 코드는 99% 테스트 가능한 코드입니다. 테스트 가능한 코드의 특징을 한번이라도 익히고 직접 테스트를 작성해보면 레거시 코드에 조금씩 도입하기도 쉽습니다. 유닛테스트, 스냅샷테스트, UI테스트, 통합테스트를 작성해봅니다.
 
-관련1: [테스트와 좋은 설계의 관계, 그리고 나쁜 설계의 영향](https://soojin.ro/blog/tests-and-design)
-<br>
-관련2: [테스트 코드 작성하면 좋은 점](https://soojin.ro/blog/writing-test-code)
-<br>
-관련3: [uber/RIBs 유닛 테스트 짜기](https://soojin.ro/blog/unit-testing-ribs)
-<br>
-관련4: [XCTest 소요시간 단축하기](https://soojin.ro/blog/application-library-test)
-
-### 4부. 확장성 있는 인프라: 코드만으로 해결할 수 없는 문제들
-
-확장성 있는 아키텍처를 만들고 유지하려면 코드 뿐 아니라 개발 프로세스도 뒷받침해줘야 합니다. 피쳐플래그와 품질 모니터링을 도입해서 얻을 수 있는 것들과 제가 경험해본 좋은 개발 문화 사례를 공유합니다.
-
-관련1: [앱 안정성을 향한 끊임없는 여정](https://soojin.ro/blog/journey-to-app-stability)
-<br>
-관련2: [팀워크](https://soojin.ro/blog/teamwork)
-<br>
-관련3: [개인과 팀이 성장하는 모바일 개발 환경](https://soojin.ro/blog/mobile-platform)
