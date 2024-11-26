@@ -30,7 +30,7 @@ protocol TopupRouting: Routing {
     func popToRoot()
 }
 
-protocol TopupListener: AnyObject {
+public protocol TopupListener: AnyObject {
     func topupClose()
     func topupDidFinish()
 }

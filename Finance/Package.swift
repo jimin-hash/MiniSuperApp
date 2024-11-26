@@ -1,4 +1,4 @@
-// swift-tools-version: 6.0
+// swift-tools-version: 5.4
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -12,6 +12,10 @@ let package = Package(
         .library(
             name: "AddPaymentMethod",
             targets: ["AddPaymentMethod"]
+        ),
+        .library(
+            name: "Topup",
+            targets: ["Topup"]
         ),
         .library(
             name: "FinanceEntity",
@@ -38,6 +42,17 @@ let package = Package(
             ]
         ),
         .target(
+            name: "Topup",
+            dependencies: [
+                "ModernRIBs",
+                "FinanceEntity",
+                "FinanceRepository",
+                "AddPaymentMethod",
+                .product(name: "RIBsUtil", package: "Platform"),
+                .product(name: "SuperUI", package: "Platform")
+            ]
+        ),
+        .target(
             name: "FinanceEntity",
             dependencies: [
             ]
@@ -49,5 +64,8 @@ let package = Package(
                 .product(name: "CombineUtil", package: "Platform")
             ]
         ),
+    ],
+    swiftLanguageVersions: [
+        .version("5.4")
     ]
 )

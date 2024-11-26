@@ -42,3 +42,20 @@ public final class CurrentValuePublisher<Element>: ReadOnlyCurrentValuePublisher
         currentvalueRelay.accept(value)
     }
 }
+
+extension ReadOnlyCurrentValuePublisher: @unchecked Sendable where Element: Sendable {}
+extension CurrentValuePublisher: @unchecked Sendable where Element: Sendable {}
+
+
+public final class FutureResultWrapper<Output, Failure: Error>: @unchecked Sendable {
+    public typealias Promise = (Result<Output, Failure>) -> Void
+
+    public let completionResult: Promise
+
+    /// Creates a publisher that invokes a promise closure when the publisher emits an element.
+    ///
+    /// - Parameter attemptToFulfill: A ``Future/Promise`` that the publisher invokes when the publisher emits an element or terminates with an error.
+    public init(_ attemptToFulfill: @escaping Promise) {
+        self.completionResult = attemptToFulfill
+    }
+}

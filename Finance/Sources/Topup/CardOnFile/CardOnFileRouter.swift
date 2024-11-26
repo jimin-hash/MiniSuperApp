@@ -22,6 +22,7 @@ final class CardOnFileRouter: ViewableRouter<CardOnFileInteractable, CardOnFileV
     // TODO: Constructor inject child builder protocols to allow building children.
     override init(interactor: CardOnFileInteractable, viewController: CardOnFileViewControllable) {
         super.init(interactor: interactor, viewController: viewController)
+        
         interactor.router = self
     }
 }

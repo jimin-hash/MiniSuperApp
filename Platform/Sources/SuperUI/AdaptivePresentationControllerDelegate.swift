@@ -18,4 +18,5 @@ public final class AdaptivePresentationControllerDelegateProxy: NSObject, UIAdap
     public func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
         delegate?.presentationControllerDidDismiss()
     }
+    
 }

@@ -15,7 +15,7 @@ protocol AddPaymentMethodPresentableListener: AnyObject {
     func didTapConfirm(with number: String, cvc: String, expiry: String)
 }
 
-final class AddPaymentMethodViewController: UIViewController, @preconcurrency AddPaymentMethodPresentable, AddPaymentMethodViewControllable {
+final class AddPaymentMethodViewController: UIViewController, AddPaymentMethodPresentable, AddPaymentMethodViewControllable {
     
     weak var listener: AddPaymentMethodPresentableListener?
     
