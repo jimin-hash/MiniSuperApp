@@ -9,6 +9,7 @@ import ModernRIBs
 import Combine
 import FinanceEntity
 import FinanceRepository
+import AddPaymentMethod
 
 // 아무것도 없으므로, AddPaymentMethodRouting 리턴타입들을 ViewableRouting로 변경
 protocol AddPaymentMethodRouting: ViewableRouting {
@@ -18,11 +19,6 @@ protocol AddPaymentMethodRouting: ViewableRouting {
 protocol AddPaymentMethodPresentable: Presentable {
     var listener: AddPaymentMethodPresentableListener? { get set }
     // TODO: Declare methods the interactor can invoke the presenter to present data.
-}
-
-public protocol AddPaymentMethodListener: AnyObject {
-    func addPaymentMethodDidTapClose()
-    func addPaymentMethodDidAddCard(paymentMethod: PaymentMethod)
 }
 
 protocol AddPaymentMethodInteractorDependency {

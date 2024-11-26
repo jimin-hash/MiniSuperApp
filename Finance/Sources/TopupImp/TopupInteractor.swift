@@ -12,6 +12,7 @@ import FinanceEntity
 import FinanceRepository
 import CombineUtil
 import AddPaymentMethod
+import Topup
 
 // 뷰가 없는 리블렛으로 '충전하기' 버튼 클릭시 호출 됨
 // 카드가 없으면 카드 추가화면, 카드가 있으면 금액 입력 화면으로 이동
@@ -28,11 +29,6 @@ protocol TopupRouting: Routing {
     func detachCardOnFile()
     
     func popToRoot()
-}
-
-public protocol TopupListener: AnyObject {
-    func topupClose()
-    func topupDidFinish()
 }
 
 protocol TopupInteractorDependency {
