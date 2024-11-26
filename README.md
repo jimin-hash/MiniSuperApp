@@ -83,6 +83,13 @@ internal protocol -> public 으로 전환할때 리스너, 디펜던시, 빌더�
 4. ReadOnlyCurrentValuePublisher는 앱 전반적으로 쓰이는 잔액 publisher이기 때문에 Platform 패키지에 combineUtil이라는 라이브러리를 생성하여 사용하게끔함
 5. RIBs관련 유틸도 Platform 패키지에 라이브러리 생성함
 
+의존성 없애기!
+예) AppHome 모듈에 import TransportHome 이 있다는것은 TransportHome에 모든 소스 코드 의존성을 가지고 있겠다는것!
+리블렛 모듈은 리블렛의 빌더만 직접 만들지 않으면 된다. 
+그래서 TransportHome를 인터페이스와 구현부를 분리해서 제공함 -> 사용 모듈 빌드 시간에 영향을 받지 않게 됨
+
+TransportHomeBuildable를 부모로 부터 요청 진행? -> AppHome의 부모 AppRoot는 최상위 부모로 언젠가 빌드가 되어야하는 곳이 이곳이므로
+
 
 
 
