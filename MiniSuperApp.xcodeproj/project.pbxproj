@@ -16,6 +16,12 @@
 		8854F1DA2CF5D26400C94809 /* TransportHomeImp in Frameworks */ = {isa = PBXBuildFile; productRef = 8854F1D92CF5D26400C94809 /* TransportHomeImp */; };
 		8854F1DC2CF5D79C00C94809 /* TopupImp in Frameworks */ = {isa = PBXBuildFile; productRef = 8854F1DB2CF5D79C00C94809 /* TopupImp */; };
 		8854F1DE2CF5DA9300C94809 /* AddPaymentMethodImp in Frameworks */ = {isa = PBXBuildFile; productRef = 8854F1DD2CF5DA9300C94809 /* AddPaymentMethodImp */; };
+		8854F1E02CF8C5EE00C94809 /* DefaultsStore in Frameworks */ = {isa = PBXBuildFile; productRef = 8854F1DF2CF8C5EE00C94809 /* DefaultsStore */; };
+		8854F1E22CF8C5EE00C94809 /* Network in Frameworks */ = {isa = PBXBuildFile; productRef = 8854F1E12CF8C5EE00C94809 /* Network */; };
+		8854F1E42CF8C5EE00C94809 /* NetworkImp in Frameworks */ = {isa = PBXBuildFile; productRef = 8854F1E32CF8C5EE00C94809 /* NetworkImp */; };
+		8854F1E62CF8C65500C94809 /* BaseURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8854F1E52CF8C65500C94809 /* BaseURL.swift */; };
+		8854F1E82CF8C73500C94809 /* SuperAppUrlProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8854F1E72CF8C73500C94809 /* SuperAppUrlProtocol.swift */; };
+		8854F1EA2CF8C99B00C94809 /* SetupURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8854F1E92CF8C99B00C94809 /* SetupURLProtocol.swift */; };
 		886242342CF1A1B900AEF793 /* FinanceEntity in Frameworks */ = {isa = PBXBuildFile; productRef = 886242332CF1A1B900AEF793 /* FinanceEntity */; };
 		886242362CF1A1B900AEF793 /* FinanceRepository in Frameworks */ = {isa = PBXBuildFile; productRef = 886242352CF1A1B900AEF793 /* FinanceRepository */; };
 		886242382CF1A1B900AEF793 /* CombineUtil in Frameworks */ = {isa = PBXBuildFile; productRef = 886242372CF1A1B900AEF793 /* CombineUtil */; };
@@ -42,6 +48,9 @@
 		882A7FA12CF18443005CD31F /* Transport */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Transport; sourceTree = "<group>"; };
 		882A7FA22CF18456005CD31F /* Platform */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Platform; sourceTree = "<group>"; };
 		8854F1D72CF5D1C800C94809 /* AppRootComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootComponent.swift; sourceTree = "<group>"; };
+		8854F1E52CF8C65500C94809 /* BaseURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseURL.swift; sourceTree = "<group>"; };
+		8854F1E72CF8C73500C94809 /* SuperAppUrlProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperAppUrlProtocol.swift; sourceTree = "<group>"; };
+		8854F1E92CF8C99B00C94809 /* SetupURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupURLProtocol.swift; sourceTree = "<group>"; };
 		F57EBE522738468700FE9319 /* Array+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
 		F57F6AFD26DB4CD700C0117D /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarController.swift; sourceTree = "<group>"; };
 		F5829F5526DB2BC400BFA8CD /* MiniSuperApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MiniSuperApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +77,8 @@
 				8854F1DA2CF5D26400C94809 /* TransportHomeImp in Frameworks */,
 				8854F1DC2CF5D79C00C94809 /* TopupImp in Frameworks */,
 				88B16D5F2CF1BE000072070D /* Topup in Frameworks */,
+				8854F1E02CF8C5EE00C94809 /* DefaultsStore in Frameworks */,
+				8854F1E22CF8C5EE00C94809 /* Network in Frameworks */,
 				886242342CF1A1B900AEF793 /* FinanceEntity in Frameworks */,
 				8862423C2CF1A1B900AEF793 /* SuperUI in Frameworks */,
 				8854F1D22CF5BDCE00C94809 /* TransportHome in Frameworks */,
@@ -75,6 +86,7 @@
 				8862423A2CF1A1B900AEF793 /* RIBsUtil in Frameworks */,
 				8854F1D42CF5BF4000C94809 /* AppHome in Frameworks */,
 				8854F1CE2CF5BC6900C94809 /* FinanceHome in Frameworks */,
+				8854F1E42CF8C5EE00C94809 /* NetworkImp in Frameworks */,
 				886242362CF1A1B900AEF793 /* FinanceRepository in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,6 +152,9 @@
 				F5829F7326DB34AA00BFA8CD /* AppRootInteractor.swift */,
 				F57F6AFD26DB4CD700C0117D /* RootTabBarController.swift */,
 				8854F1D72CF5D1C800C94809 /* AppRootComponent.swift */,
+				8854F1E52CF8C65500C94809 /* BaseURL.swift */,
+				8854F1E72CF8C73500C94809 /* SuperAppUrlProtocol.swift */,
+				8854F1E92CF8C99B00C94809 /* SetupURLProtocol.swift */,
 			);
 			path = AppRoot;
 			sourceTree = "<group>";
@@ -186,6 +201,9 @@
 				8854F1D92CF5D26400C94809 /* TransportHomeImp */,
 				8854F1DB2CF5D79C00C94809 /* TopupImp */,
 				8854F1DD2CF5DA9300C94809 /* AddPaymentMethodImp */,
+				8854F1DF2CF8C5EE00C94809 /* DefaultsStore */,
+				8854F1E12CF8C5EE00C94809 /* Network */,
+				8854F1E32CF8C5EE00C94809 /* NetworkImp */,
 			);
 			productName = SuperRedApp;
 			productReference = F5829F5526DB2BC400BFA8CD /* MiniSuperApp.app */;
@@ -245,13 +263,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5829F7626DB34AA00BFA8CD /* AppRootBuilder.swift in Sources */,
+				8854F1EA2CF8C99B00C94809 /* SetupURLProtocol.swift in Sources */,
 				8854F1D82CF5D1C800C94809 /* AppRootComponent.swift in Sources */,
 				F5829F7726DB34AA00BFA8CD /* AppRootInteractor.swift in Sources */,
 				F57F6AFE26DB4CD700C0117D /* RootTabBarController.swift in Sources */,
 				F5829F5926DB2BC400BFA8CD /* AppDelegate.swift in Sources */,
+				8854F1E82CF8C73500C94809 /* SuperAppUrlProtocol.swift in Sources */,
 				F5829F7926DB397300BFA8CD /* AppComponent.swift in Sources */,
 				F57EBE552738468700FE9319 /* Array+Utils.swift in Sources */,
 				F5829F7426DB34AA00BFA8CD /* AppRootRouter.swift in Sources */,
+				8854F1E62CF8C65500C94809 /* BaseURL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,6 +518,18 @@
 		8854F1DD2CF5DA9300C94809 /* AddPaymentMethodImp */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AddPaymentMethodImp;
+		};
+		8854F1DF2CF8C5EE00C94809 /* DefaultsStore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DefaultsStore;
+		};
+		8854F1E12CF8C5EE00C94809 /* Network */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Network;
+		};
+		8854F1E32CF8C5EE00C94809 /* NetworkImp */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NetworkImp;
 		};
 		886242332CF1A1B900AEF793 /* FinanceEntity */ = {
 			isa = XCSwiftPackageProductDependency;

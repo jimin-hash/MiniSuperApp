@@ -5,6 +5,7 @@
 //  Created by Jimin Park on 11/4/24.
 //
 
+import Foundation
 import ModernRIBs
 import Combine
 import FinanceEntity
@@ -28,7 +29,7 @@ protocol AddPaymentMethodInteractorDependency {
 final class AddPaymentMethodInteractor: PresentableInteractor<AddPaymentMethodPresentable>, AddPaymentMethodInteractable, AddPaymentMethodPresentableListener {
     weak var router: AddPaymentMethodRouting?
     weak var listener: AddPaymentMethodListener?
-
+    
     private let dependency: AddPaymentMethodInteractorDependency
     private var cancellables: Set<AnyCancellable>
     
@@ -41,12 +42,12 @@ final class AddPaymentMethodInteractor: PresentableInteractor<AddPaymentMethodPr
         super.init(presenter: presenter)
         presenter.listener = self
     }
-
+    
     override func didBecomeActive() {
         super.didBecomeActive()
         // TODO: Implement business logic here.
     }
-
+    
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
@@ -58,10 +59,12 @@ final class AddPaymentMethodInteractor: PresentableInteractor<AddPaymentMethodPr
     
     func didTapConfirm(with number: String, cvc: String, expiry: String) {
         let info = AddPaymentMethodInfo(number: number, cvc: cvc, expiry: expiry)
-        dependency.cardOnFileRepository.addCard(info: info).sink { _ in
-        } receiveValue: { method in
-            self.listener?.addPaymentMethodDidAddCard(paymentMethod: method)
-        }.store(in: &cancellables)
-
+        dependency.cardOnFileRepository.addCard(info: info)
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+            } receiveValue: { method in
+                self.listener?.addPaymentMethodDidAddCard(paymentMethod: method)
+            }.store(in: &cancellables)
+        
     }
 }
