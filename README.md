@@ -95,12 +95,52 @@ TransportHomeBuildable를 부모로 부터 요청 진행? -> AppHome의 부모 A
 
 
 
+Test Code
+
+```
+func testTopupWithValidAmount() {
+        // given - 수행에 앞어서 환경을 셋업
+        let paymentMethod = PaymentMethod(id: "id_1", name: "name_1", digits: "8888", color: "#13ABE8FF", isPrimary: false)
+        dependency.selectedPaymentMethodSubject.send(paymentMethod)
+        
+        // when - 검증하고자 하는 행위
+        sut.didTapTopup(with: 1_000_000)
+        
+        // then - 예상하는 행동을 했는지 검증
+        // 멀티스래딩 문제! 네트워킹이 백그라운드에서 진행되고 콜백 결과를 receiveOn 메인 스래드에서 받고 있음
+        // receiveOn 때문에 stopLoading과 enterAmountDidFinishTopup이 비동기로 실행이 되어서, XCTAssert 메소드가 불리고 난 다음에 stopLoading과 enterAmountDidFinishTopup 이 호출이 되는 문제가 있다.
+        // 가장 간단한 방법으로는 XCTWaiter 사용하는 방법이 있다. -> 최선은 아님!
+        _ = XCTWaiter.wait(for: [expectation(description: "wait ... ")], timeout: 0.1)
+        
+        XCTAssertEqual(presenter.startLoadingCount, 1)
+        XCTAssertEqual(presenter.stopLoadingCount, 1)
+        XCTAssertEqual(repository.topupCallCount, 1)
+        XCTAssertEqual(repository.paymentMethodID, "id_1")
+        XCTAssertEqual(repository.topupAmount, 1_000_000)
+        XCTAssertEqual(listener.enterAmountDidFinishTopupCallCount, 1)
+}
+```
+멀티스레딩 환경에서 테스트하기
+멀티스레딩 환경은 유닛 테스트의 재연가능성(Reproducibility)을 저해하는 방해물
+-> 해식 로직과 비동기적 특성을 분리하여 테스트는 가능한 한 동기적(Synchronous)으로 작동하게 만들어야 한다.
+
+해결 방법
+DispatchQueue.main을 직접 쓰지 않고 주입을 받게 해서 테스트 코드에서는 다른 스케줄을 넣을 수 있도록 한댜.
+테스트 코드에서는 ImmediateScheduler(A scheduler for performing synchronous actions)를 사용
+스케줄러는 generic protocol 타입이라 직접 선언 못함, combine의 publisher처럼 (그래서 AnyPublisher...) 
+```
+var mainQueue: AnySchedulerOf<DispatchQueue> { .main }
+var mainQueue: AnySchedulerOf<DispatchQueue> { .immediate }
+```
 
 
 
-Problem
-AddPaymentMethodViewController, AddPaymentMethodBuilder에 @MainActor, @preconcurrency 추가해야함? nonisolated?
--> 전반적으로 actor에 대한 스터디 필요!!!
+
+
+
+
+
+
 
 
 
