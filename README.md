@@ -133,10 +133,14 @@ var mainQueue: AnySchedulerOf<DispatchQueue> { .main }
 var mainQueue: AnySchedulerOf<DispatchQueue> { .immediate }
 ```
 
+Interactor Test
+router, presentable, dependencies mock 필요
 
-
-
-
+Router Test
+Buildable, ViewControllable mock필요
+1. Builable에서 올바른 파라미터를 넘기는지 체크
+2. 두번 이상의 Attach 하는 방어 로직 체크
+3. ViewControllable의 present, dismiss, push, pop의 정상 작동 체크
 
 
 
