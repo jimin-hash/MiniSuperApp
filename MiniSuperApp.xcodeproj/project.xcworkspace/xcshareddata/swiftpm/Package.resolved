@@ -1,24 +1,52 @@
 {
-  "originHash" : "ccf95e2d9c4eae2c2d90cc3119c89309096459b4828759880a2ddea65d6bb656",
-  "pins" : [
-    {
-      "identity" : "combineext",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/CombineCommunity/CombineExt.git",
-      "state" : {
-        "revision" : "0880829102152185190064fd17847a7c681d2127",
-        "version" : "1.5.1"
+  "object": {
+    "pins": [
+      {
+        "package": "combine-schedulers",
+        "repositoryURL": "https://github.com/pointfreeco/combine-schedulers",
+        "state": {
+          "branch": null,
+          "revision": "ec62f32d21584214a4b27c8cee2b2ad70ab2c38a",
+          "version": "0.11.0"
+        }
+      },
+      {
+        "package": "CombineExt",
+        "repositoryURL": "https://github.com/CombineCommunity/CombineExt.git",
+        "state": {
+          "branch": null,
+          "revision": "0880829102152185190064fd17847a7c681d2127",
+          "version": "1.5.1"
+        }
+      },
+      {
+        "package": "ModernRIBs",
+        "repositoryURL": "https://github.com/DevYeom/ModernRIBs",
+        "state": {
+          "branch": null,
+          "revision": "5e0a67365a1fb18ca06b919dbf53608843ddc284",
+          "version": "1.0.1"
+        }
+      },
+      {
+        "package": "swift-concurrency-extras",
+        "repositoryURL": "https://github.com/pointfreeco/swift-concurrency-extras",
+        "state": {
+          "branch": null,
+          "revision": "a46265bb4f75808b0e15d971eebc408f557870a3",
+          "version": "0.1.2"
+        }
+      },
+      {
+        "package": "xctest-dynamic-overlay",
+        "repositoryURL": "https://github.com/pointfreeco/xctest-dynamic-overlay",
+        "state": {
+          "branch": null,
+          "revision": "50843cbb8551db836adec2290bb4bc6bac5c1865",
+          "version": "0.9.0"
+        }
       }
-    },
-    {
-      "identity" : "modernribs",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/DevYeom/ModernRIBs",
-      "state" : {
-        "revision" : "5e0a67365a1fb18ca06b919dbf53608843ddc284",
-        "version" : "1.0.1"
-      }
-    }
-  ],
-  "version" : 3
+    ]
+  },
+  "version": 1
 }

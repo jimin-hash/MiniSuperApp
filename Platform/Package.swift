@@ -18,6 +18,10 @@ let package = Package(
             targets: ["RIBsUtil"]
         ),
         .library(
+            name: "RIBsTestSupport",
+            targets: ["RIBsTestSupport"]
+        ),
+        .library(
             name: "SuperUI",
             targets: ["SuperUI"]
         ),
@@ -37,12 +41,20 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/CombineCommunity/CombineExt.git", from: "1.0.0"),
         .package(url: "https://github.com/DevYeom/ModernRIBs.git", from: "1.0.1"),
+        .package(url: "https://github.com/pointfreeco/combine-schedulers", from: "0.5.3"),
     ],
     targets: [
         .target(
             name: "CombineUtil",
             dependencies: [
-                "CombineExt"
+                "CombineExt",
+                .product(name: "CombineSchedulers", package: "combine-schedulers")
+            ]
+        ),
+        .target(
+            name: "RIBsTestSupport",
+            dependencies: [
+                "ModernRIBs"
             ]
         ),
         .target(

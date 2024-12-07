@@ -18,12 +18,20 @@ let package = Package(
             targets: ["AddPaymentMethodImp"]
         ),
         .library(
+            name: "AddPaymentMethodTestSupport",
+            targets: ["AddPaymentMethodTestSupport"]
+        ),
+        .library(
             name: "Topup",
             targets: ["Topup"]
         ),
         .library(
             name: "TopupImp",
             targets: ["TopupImp"]
+        ),
+        .library(
+            name: "TopupTestSupport",
+            targets: ["TopupTestSupport"]
         ),
         .library(
             name: "FinanceHome",
@@ -37,6 +45,10 @@ let package = Package(
             name: "FinanceRepository",
             targets: ["FinanceRepository"]
         ),
+        .library(
+            name: "FinanceRepositoryTestSupport",
+            targets: ["FinanceRepositoryTestSupport"]
+        ),
     ],
     dependencies: [
         .package(url: "https://github.com/DevYeom/ModernRIBs.git", from: "1.0.1"),
@@ -48,6 +60,15 @@ let package = Package(
             dependencies: [
                 "ModernRIBs",
                 "FinanceEntity",
+                .product(name: "RIBsUtil", package: "Platform"),
+            ]
+        ),
+        .target(
+            name: "AddPaymentMethodTestSupport",
+            dependencies: [
+                "ModernRIBs",
+                "FinanceEntity",
+                "AddPaymentMethod",
                 .product(name: "RIBsUtil", package: "Platform"),
             ]
         ),
@@ -80,6 +101,12 @@ let package = Package(
             ]
         ),
         .target(
+            name: "TopupTestSupport",
+            dependencies: [
+                "Topup",
+            ]
+        ),
+        .target(
             name: "FinanceHome",
             dependencies: [
                 "ModernRIBs",
@@ -102,6 +129,24 @@ let package = Package(
                 "FinanceEntity",
                 .product(name: "CombineUtil", package: "Platform"),
                 .product(name: "Network", package: "Platform")
+            ]
+        ),
+        .target(
+            name: "FinanceRepositoryTestSupport",
+            dependencies: [
+                "FinanceEntity",
+                "FinanceRepository",
+                .product(name: "CombineUtil", package: "Platform"),
+            ]
+        ),
+        .testTarget(
+            name: "TopupImpTests",
+            dependencies: [
+                "TopupImp",
+                "FinanceRepositoryTestSupport",
+                "TopupTestSupport",
+                "AddPaymentMethodTestSupport",
+                .product(name: "RIBsTestSupport", package: "Platform"),
             ]
         ),
     ],

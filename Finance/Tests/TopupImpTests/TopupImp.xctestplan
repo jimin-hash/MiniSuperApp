@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "9AC06319-5C95-4302-A451-36D4C5F98158",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "TopupImpTests",
+        "name" : "TopupImpTests"
+      }
+    }
+  ],
+  "version" : 1
+}
