@@ -6,7 +6,8 @@ import PackageDescription
 let package = Package(
     name: "Platform",
     platforms: [
-        .iOS(.v14),
+//        .iOS(.v14),
+        .iOS(.v13)
     ],
     products: [
         .library(
@@ -36,12 +37,17 @@ let package = Package(
         .library(
             name: "NetworkImp",
             targets: ["NetworkImp"]
+        ),
+        .library(
+            name: "PlatformTestSupport",
+            targets: ["PlatformTestSupport"]
         )
     ],
     dependencies: [
         .package(url: "https://github.com/CombineCommunity/CombineExt.git", from: "1.0.0"),
         .package(url: "https://github.com/DevYeom/ModernRIBs.git", from: "1.0.1"),
         .package(url: "https://github.com/pointfreeco/combine-schedulers", from: "0.5.3"),
+        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing", from: "1.12.0") 
     ],
     targets: [
         .target(
@@ -83,6 +89,12 @@ let package = Package(
             name: "NetworkImp",
             dependencies: [
                 "Network"
+            ]
+        ),
+        .target(
+            name: "PlatformTestSupport",
+            dependencies: [
+                .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
             ]
         ),
     ],
