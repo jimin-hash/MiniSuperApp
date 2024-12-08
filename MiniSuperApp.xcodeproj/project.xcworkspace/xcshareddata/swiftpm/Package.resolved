@@ -20,6 +20,15 @@
         }
       },
       {
+        "package": "Hammer",
+        "repositoryURL": "https://github.com/lyft/Hammer.git",
+        "state": {
+          "branch": null,
+          "revision": "3210dd6f63f1dc98086f68ac5ae21004ed013401",
+          "version": "0.16.0"
+        }
+      },
+      {
         "package": "ModernRIBs",
         "repositoryURL": "https://github.com/DevYeom/ModernRIBs",
         "state": {

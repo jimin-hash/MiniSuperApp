@@ -70,6 +70,7 @@ let package = Package(
                 "FinanceEntity",
                 "AddPaymentMethod",
                 .product(name: "RIBsUtil", package: "Platform"),
+                .product(name: "RIBsTestSupport", package: "Platform"),
             ]
         ),
         .target(
