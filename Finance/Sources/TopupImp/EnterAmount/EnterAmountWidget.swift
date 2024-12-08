@@ -54,6 +54,7 @@ final class EnterAmountWidget: UIView {
         textField.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
         textField.textAlignment = .right
         textField.keyboardType = .numberPad
+        textField.accessibilityIdentifier = "topup_enteramoun_textfield"
         return textField
     }()
     
