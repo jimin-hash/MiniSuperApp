@@ -143,7 +143,20 @@ Buildable, ViewControllable mock필요
 3. ViewControllable의 present, dismiss, push, pop의 정상 작동 체크
 
 
+Unit Testing
+- 객체나 모듈 단위 테스트
+- 코드 레벨에서 일부 코드의 행위를 검증하는 방식
+  
+SnapShot Testing - 뷰 유닛테스트 진행
 
+UI Testing
+- End-to-End
+- 코드를 모르는 상태를 가정하고 테스트하는 방식
+- 앱의 사용자의 입장에서 테스트하는 방식
+- 실제 백엔드 응답 값을 모킹해줘야함(swifter 사용)
+<img width="823" alt="스크린샷 2024-12-08 오후 9 22 46" src="https://github.com/user-attachments/assets/a3b70c15-4a6a-427b-9f65-f7b1b30e1584">
+
+Integration Testing
 
 
 
